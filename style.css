@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+body {
+  font-family: "Jeju Hallasan", cursive;
+  padding: 0 20px;
+}
+
+h3 {
+  text-align: center;
+  font-size: 50px;
+  color: #603913;
+  padding: 50px 0;
+}
+
+.play_wrap {
+  width: 1200px;
+  max-width: 100%;
+  padding: 100px;
+  border: 3px solid #603913;
+  margin: 0 auto 30px;
+  display: flex;
+  background: darkgreen;
+}
+
+.play_wrap > div {
+  width: 25%;
+  height: 500px;
+  background-image: url(images/front.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+button {
+  display: block;
+  width: 250px;
+  height: 50px;
+  border: 3px solid #603913;
+  background: #c37e39;
+  font-size: 20px;
+  color: #603913;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.play_wrap > div.active {
+  background-image: url(images/back.png);
+}
+.play_wrap > div.yut04.active {
+  background-image: url(images/back2.png);
+}
+.play_wrap > div.yut04.nak {
+  position: relative;
+  left: 200px;
+  transform: rotateZ(20deg);
+}
+
+.play_wrap > div.yut04.nak::after {
+  content: url(images/double.png);
+  position: absolute;
+  top: -50px;
+  left: -50px;
+}
+
+.play_wrap > div.rotate {
+  animation: rotate 0.3s 3;
+}
+
+.result_wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  padding: 0 20px;
+}
+
+.result_wrap.on {
+  display: flex;
+}
+
+.result {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, 0);
+  background: #fff;
+  max-width: 500px;
+  width: 100%;
+  max-height: 300px;
+  height: 100%;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 50px;
+  color: #603913;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding: 30px;
+  flex-wrap: wrap;
+}
+
+.result .txt {
+  width: 100%;
+}
+
+.result > button {
+  width: 100px;
+  height: 50px;
+}
+
+.btn_more {
+  display: none;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+
+@media (max-width: 1199px) {
+  .play_wrap {
+    width: calc(100% - 40px);
+    padding: 50px;
+    margin: 20px auto;
+  }
+
+  .play_wrap > div.yut04.nak {
+    top: -185px;
+    left: 0;
+  }
+  .play_wrap > div.yut04.nak::after {
+    top: 155px;
+    left: -300px;
+  }
+}
+
+@media (max-width: 700px) {
+  h3 {
+    font-size: 30px;
+    padding: 30px 0;
+  }
+  .play_wrap {
+    padding: 20px;
+  }
+
+  .play_wrap > div {
+    height: 300px;
+  }
+
+  .play_wrap > div.yut04.nak {
+    top: -97px;
+  }
+
+  .play_wrap > div.yut04.nak::after {
+    transform: scale(0.7);
+    top: 61px;
+  }
+}
