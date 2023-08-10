@@ -1,76 +1,79 @@
-$(".play_btn").click(function () {
-  $(".play_wrap > div.yut04").removeClass("nak");
-  $(this).prop("disabled", true);
-  $(".play_wrap > div").addClass("rotate");
+const playBtn = document.querySelector(".play_btn");
+const yut = document.querySelectorAll(".yut");
+const yut4 = document.querySelector(".yut04");
+const resultBox = document.querySelector(".result_wrap");
+const resultText = document.querySelector(".txt");
+const retryBtn = document.querySelector(".retry");
+const btnMore = document.querySelector(".btn_more");
+const nakClass = document.querySelector(".nak");
+const tit = document.querySelector("h3");
 
+playBtn.addEventListener("click", () => {
+  yut4.classList.remove("nak");
+  yut.forEach((yut) => {
+    yut.classList.add("rotate");
+  });
   setTimeout(() => {
-    var nak = Math.floor(Math.random() * 9) + 1;
+    const nak = Math.floor(Math.random() * 9) + 1;
 
-    if (nak == 7) {
-      $(".yut04").addClass("nak");
+    // 네번째 윷에 nak 붙이기
+    if (nak === 7) {
+      yut4.classList.add("nak");
     }
 
-    for (var i = 1; i <= 4; i++) {
-      eval("random0" + i + "=Math.floor(Math.random()*2) +1;");
-
-      var ran = eval("random0" + i);
-      if (ran == 1) {
-        $(".play_wrap > div.yut0" + i).removeClass("active");
+    for (let i = 0; i <= yut.length - 1; i++) {
+      const random = Math.floor(Math.random() * 2) + 1;
+      if (random === 1) {
+        yut[i].classList.add("active");
       } else {
-        $(".play_wrap > div.yut0" + i).addClass("active");
+        yut[i].classList.remove("active");
       }
     }
-    $(".play_wrap > div").removeClass("rotate");
-    var activeCount = $("div.active").length;
+
+    yut.forEach((yut) => {
+      yut.classList.remove("rotate");
+    });
+    let activeNak = yut4.classList.contains("nak"); // 낙인지 아닌지 판별
+
     setTimeout(() => {
-      $(".result_wrap").addClass("on");
-      $("h3").text("윷놀이를 해보자");
-    }, 1000);
-    if ($(".play_wrap > div").hasClass("nak")) {
-      $(".txt").text("낙!!!!!😋😋").style("color", "red");
-    } else {
-      switch (activeCount) {
-        case 0:
-          $(".txt").text("모");
-          $(".btn_more").show();
-          $(".retry").hide();
-
-          break;
-        case 1:
-          if ($(".play_wrap > div.yut04").hasClass("active")) {
-            $(".txt").text("빽도!!!!!!😜😜").style("color", "red");
-          } else {
-            $(".txt").text("도");
-          }
-
-          break;
-        case 2:
-          $(".txt").text("개");
-          break;
-        case 3:
-          $(".txt").text("걸");
-          break;
-        case 4:
-          $(".txt").text("윷");
-          $(".btn_more").show();
-          $(".retry").hide();
-          break;
+      resultBox.classList.add("on");
+      if (activeNak) {
+        resultText.innerText = "낙🤪🤪";
+      } else {
+        // const activeCount = document.querySelectorAll(".active").length;
+        activeCount = 0;
+        switch (activeCount) {
+          case 0:
+            resultText.innerText = "모";
+            retryBtn.style.display = "none";
+            btnMore.style.display = "block";
+            break;
+          case 1:
+            resultText.innerText = "도";
+            break;
+          case 2:
+            resultText.innerText = "개";
+            break;
+          case 3:
+            resultText.innerText = "걸";
+            break;
+          case 4:
+            resultText.innerText = "윷";
+            retryBtn.style.display = "none";
+            btnMore.style.display = "block";
+            break;
+        }
       }
-    }
-    console.log($(".txt").text());
+    }, 1000);
   }, 900);
-
-  $(".play_btn").prop("disabled", false);
 });
 
-$(".retry").click(function () {
+retryBtn.addEventListener("click", () => {
   location.reload();
 });
 
-$(".btn_more").click(function () {
-  $(".result_wrap").removeClass("on");
-  var retryText = $(".txt").text();
-  $("h3").text(`${retryText}(이)가 나왔으니 한판더~`);
-  $(".retry").show();
-  $(".btn_more").hide();
+btnMore.addEventListener("click", () => {
+  const retryText = resultText.innerText();
+  console.log(resultText);
+  tit.innerText = "";
 });
