@@ -24,7 +24,7 @@ h3 {
 
 .play_wrap > div {
   width: 25%;
-  height: 500px;
+  height: 400px;
   background-image: url(images/front.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -59,7 +59,7 @@ button {
   content: url(images/double.png);
   position: absolute;
   top: -50px;
-  left: -50px;
+  left: -120px;
 }
 
 .play_wrap > div.rotate {
