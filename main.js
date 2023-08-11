@@ -24,22 +24,24 @@ playBtn.addEventListener("click", (e) => {
     yut.classList.add("on");
   });
 
+  // 0 ~ 9까지 랜덤으로 정수 생성
+  const nak = Math.floor(Math.random() * 9) + 1;
+
+  // 네번째 윷에 nak 붙이기
+  if (nak === 7) {
+    yut4.classList.add("nak");
+  }
   setTimeout(() => {
-    // 0 ~ 9까지 랜덤으로 정수 생성
-    const nak = Math.floor(Math.random() * 9) + 1;
-
-    // 네번째 윷에 nak 붙이기
-    if (nak === 7) {
-      yut4.classList.add("nak");
-    }
-
     // 1(뒤) / 2(앞)가 번갈아 나와 윷에 active 붙여주어 뒤집기 추가
-    for (let i = 0; i <= yut.length - 1; i++) {
-      const random = Math.floor(Math.random() * 2) + 1;
-      if (random === 1) {
-        yut[i].classList.add("active");
-      } else {
-        yut[i].classList.remove("active");
+    let activeNak = yut4.classList.contains("nak"); // 낙인지 아닌지 판별
+    if (!activeNak) {
+      for (let i = 0; i <= yut.length - 1; i++) {
+        const random = Math.floor(Math.random() * 2) + 1;
+        if (random === 1) {
+          yut[i].classList.add("active");
+        } else {
+          yut[i].classList.remove("active");
+        }
       }
     }
 
@@ -51,7 +53,6 @@ playBtn.addEventListener("click", (e) => {
     // 일정 시간 뒤 모달팝업 뜨기
     setTimeout(() => {
       resultBox.classList.add("on"); // 모달 온
-      let activeNak = yut4.classList.contains("nak"); // 낙인지 아닌지 판별
 
       // 낙인지 먼저 판별 후
       if (activeNak) {
@@ -90,7 +91,7 @@ playBtn.addEventListener("click", (e) => {
         }
       }
     }, 1000);
-  }, 1000);
+  }, 800);
 });
 
 retryBtn.addEventListener("click", () => {
@@ -99,6 +100,10 @@ retryBtn.addEventListener("click", () => {
 
 btnMore.addEventListener("click", () => {
   const retryText = resultText.innerText;
+  yut.forEach((yut) => {
+    yut.classList.remove("on");
+    yut.classList.remove("active");
+  });
 
   // 한번 더 나온 횟수 증가
   moreCount++;
@@ -106,7 +111,7 @@ btnMore.addEventListener("click", () => {
   if (moreCount > 1) {
     tit.innerText = `한번 더가 ${moreCount}번이나!!!`;
   } else {
-    tit.innerText = `${retryText}(이)가 나왔으니 한번 더!!`;
+    tit.innerText = `${retryText}(이)가 나왔으니\n 한번 더!!`;
   }
   resultBox.classList.remove("on"); // 모달 닫기
   retryBtn.style.display = "block";

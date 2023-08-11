@@ -2,7 +2,6 @@
 
 body {
   font-family: "Jeju Hallasan", cursive;
-  padding: 0 20px;
 }
 
 h3 {
@@ -10,6 +9,11 @@ h3 {
   font-size: 50px;
   color: #603913;
   padding: 50px 0;
+  line-height: 1.5;
+}
+
+#container {
+  overflow: hidden;
 }
 
 .play_wrap {
@@ -47,13 +51,24 @@ button {
 .play_wrap > div.active {
   background-image: url(images/back.png);
 }
+
 .play_wrap > div.yut04.active {
   background-image: url(images/back2.png);
 }
-.play_wrap > div.yut04.nak {
+.play_wrap > div.yut04.on.nak {
   position: relative;
   left: 200px;
-  transform: rotateZ(20deg);
+  animation: nak 0.9s;
+  transform: translate(0px, 0px) rotateZ(33deg);
+}
+
+@keyframes nak {
+  from {
+    transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+  }
+  to {
+    transform: translate(0, 0px) rotateZ(33deg) rotateY(-360deg);
+  }
 }
 
 .play_wrap > div.yut04.nak::after {
@@ -175,13 +190,154 @@ button {
     margin: 20px auto;
   }
 
-  .play_wrap > div.yut04.nak {
-    top: -185px;
+  .play_wrap > div.yut04.on.nak {
+    position: relative;
     left: 0;
+    animation: nak 0.9s;
+    transform: translate(-61px, -143px) rotateZ(35deg);
   }
+
   .play_wrap > div.yut04.nak::after {
-    top: 155px;
-    left: -300px;
+    top: 94px;
+    left: -203px;
+    transform: rotateZ(-31deg);
+  }
+
+  @keyframes nak {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(-61px, -143px) rotateZ(35deg) rotateY(-360deg);
+    }
+  }
+
+  .play_wrap .yut01.on {
+    animation: move1 0.9s;
+    transform: translate(110px, 125px) rotateZ(-63deg);
+  }
+
+  .play_wrap .yut02.on {
+    animation: move2 0.9s;
+    transform: translate(42px, -62px) rotateZ(47deg);
+  }
+
+  .play_wrap .yut03.on {
+    animation: move3 0.9s;
+    transform: translate(-61px, -10px) rotateZ(-47deg);
+  }
+
+  .play_wrap .yut04.on {
+    animation: move4 0.9s;
+    transform: translate(-62px, 31px) rotateZ(43deg);
+  }
+
+  @keyframes move1 {
+    0% {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+
+    100% {
+      transform: translate(110px, 125px) rotateZ(-63deg) rotateY(360deg);
+    }
+  }
+
+  @keyframes move2 {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(42px, -62px) rotateZ(47deg) rotateY(-360deg);
+    }
+  }
+
+  @keyframes move3 {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(-61px, -10px) rotateZ(-47deg) rotateY(360deg);
+    }
+  }
+
+  @keyframes move4 {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(-62px, 31px) rotateZ(43deg) rotateY(-360deg);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .play_wrap > div.yut04.on.nak {
+    transform: translate(-42px, -3px) rotateZ(35deg);
+  }
+
+  @keyframes nak {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(-42px, -3px) rotateZ(35deg) rotateY(-360deg);
+    }
+  }
+  .play_wrap .yut01.on {
+    animation: move1 0.9s;
+    transform: translate(76px, 85px) rotateZ(-63deg);
+  }
+
+  .play_wrap .yut02.on {
+    animation: move2 0.9s;
+    transform: translate(42px, -62px) rotateZ(47deg);
+  }
+
+  .play_wrap .yut03.on {
+    animation: move3 0.9s;
+    transform: translate(-61px, -10px) rotateZ(-47deg);
+  }
+
+  .play_wrap .yut04.on {
+    animation: move4 0.9s;
+    transform: translate(-26px, 25px) rotateZ(36deg);
+  }
+
+  @keyframes move1 {
+    0% {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+
+    100% {
+      transform: translate(76px, 85px) rotateZ(-63deg) rotateY(360deg);
+    }
+  }
+
+  @keyframes move2 {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(42px, -62px) rotateZ(47deg) rotateY(-360deg);
+    }
+  }
+
+  @keyframes move3 {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(-61px, -10px) rotateZ(-47deg) rotateY(360deg);
+    }
+  }
+
+  @keyframes move4 {
+    from {
+      transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+    }
+    to {
+      transform: translate(-26px, 25px) rotateZ(36deg) rotateY(-360deg);
+    }
   }
 }
 
@@ -199,11 +355,11 @@ button {
   }
 
   .play_wrap > div.yut04.nak {
-    top: -97px;
+    top: -112px;
   }
 
   .play_wrap > div.yut04.nak::after {
-    transform: scale(0.7);
+    transform: scale(0.7) rotateZ(-31deg);
     top: 61px;
   }
 }
