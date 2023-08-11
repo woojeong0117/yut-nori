@@ -18,9 +18,10 @@ playBtn.addEventListener("click", (e) => {
   // nak 클래스 제거
   yut4.classList.remove("nak");
 
-  // 돌아가는 모션 클래스 제거
+  // 돌아가는 모션 클래스 추가
   yut.forEach((yut) => {
     yut.classList.add("rotate");
+    yut.classList.add("on");
   });
 
   setTimeout(() => {
@@ -89,7 +90,7 @@ playBtn.addEventListener("click", (e) => {
         }
       }
     }, 1000);
-  }, 900);
+  }, 1000);
 });
 
 retryBtn.addEventListener("click", () => {

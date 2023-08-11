@@ -20,11 +20,12 @@ h3 {
   margin: 0 auto 30px;
   display: flex;
   background: darkgreen;
+  justify-content: center;
 }
 
 .play_wrap > div {
   width: 25%;
-  height: 400px;
+  height: 470px;
   background-image: url(images/front.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -62,8 +63,61 @@ button {
   left: -120px;
 }
 
-.play_wrap > div.rotate {
-  animation: rotate 0.3s 3;
+.play_wrap .yut01.on {
+  animation: move1 0.9s;
+  transform: translate(81px, 68px) rotateZ(-63deg);
+}
+
+.play_wrap .yut02.on {
+  animation: move2 0.9s;
+  transform: translate(80px, -60px) rotateZ(47deg);
+}
+
+.play_wrap .yut03.on {
+  animation: move3 0.9s;
+  transform: translate(-61px, -10px) rotateZ(-47deg);
+}
+
+.play_wrap .yut04.on {
+  animation: move4 0.9s;
+  transform: translate(0px, 0px) rotateZ(33deg);
+}
+
+@keyframes move1 {
+  0% {
+    transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+  }
+
+  100% {
+    transform: translate(81px, 68px) rotateZ(-63deg) rotateY(360deg);
+  }
+}
+
+@keyframes move2 {
+  from {
+    transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+  }
+  to {
+    transform: translate(80px, -60px) rotateZ(47deg) rotateY(-360deg);
+  }
+}
+
+@keyframes move3 {
+  from {
+    transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+  }
+  to {
+    transform: translate(-61px, -10px) rotateZ(-47deg) rotateY(360deg);
+  }
+}
+
+@keyframes move4 {
+  from {
+    transform: translate(0px, 0px) rotateZ(0deg) rotateY(0deg);
+  }
+  to {
+    transform: translate(0px, 0px) rotateZ(33deg) rotateY(-360deg);
+  }
 }
 
 .result_wrap {
@@ -112,15 +166,6 @@ button {
 
 .btn_more {
   display: none;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotateX(0deg);
-  }
-  to {
-    transform: rotateX(360deg);
-  }
 }
 
 @media (max-width: 1199px) {
